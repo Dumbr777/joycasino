@@ -26,7 +26,19 @@ func main() {
 	fmt.Scanln(&input)
 	if input == "Yes" {
 		fmt.Println("Игра началась(отсылОЧКА к пиле) =)")
-		WhoWin(logic.PlayerGame(), logic.DealerGame())
+		switch logic.Game() {
+		case "player win":
+			fmt.Println("Win")
+		case "player lose":
+			fmt.Println("Lose")
+		case "dealer lose":
+			fmt.Println("Win")
+		case "dealer win":
+			fmt.Println("Lose")
+		case "draw":
+			fmt.Println("Draw")
+
+		}
 	} else if input == "No" {
 		fmt.Println("Golang`ера ответ, пока =(")
 	} else {

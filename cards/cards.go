@@ -5,8 +5,6 @@ import (
 	"math/rand"
 )
 
-var Trash = map[string]Card{}
-
 type Suit rune
 
 const (
@@ -66,19 +64,30 @@ type Card struct {
 }
 
 func (c *Card) String() string {
-	return string(rune(c.rank) + rune(c.suit))
+	return string(rune(c.rank)) + string(rune(c.suit))
 }
 
-func TakeCard() int {
-	for {
-		card := Card{Ranks[rand.Int()%len(Ranks)], Suits[rand.Int()%len(Suits)]}
-		if _, ok := Trash[card.String()]; ok {
-			//fmt.Println("Найдена похожая карта", string(card.rank), string(card.suit))
-			continue
-		} else {
-			fmt.Println("Вытянутая карта:", string(card.rank), string(card.suit))
-			Trash[card.String()] = card
-			return int(RankValues[card.rank])
+var Deck = map[string]int{}
+var ShuffledDeck = []string{}
+
+func InitializeTheDeck() {
+	for i := 0; i < len(Ranks); i++ {
+		for j := 0; j < len(Suits); j++ {
+			ShuffledDeck = append(ShuffledDeck, string(Ranks[i])+string(Suits[j]))
+			Deck[string(Ranks[i])+string(Suits[j])] = RankValues[Ranks[i]]
+
 		}
+
 	}
+	rand.Shuffle(len(ShuffledDeck), func(i, j int) {
+		ShuffledDeck[i], ShuffledDeck[j] = ShuffledDeck[j], ShuffledDeck[i]
+	})
+}
+func TakeCard() int {
+	InitializeTheDeck()
+	card := Deck[ShuffledDeck[len(ShuffledDeck)-1]]
+	fmt.Println(ShuffledDeck[len(ShuffledDeck)-1])
+	ShuffledDeck = ShuffledDeck[:len(ShuffledDeck)-1]
+
+	return card
 }
