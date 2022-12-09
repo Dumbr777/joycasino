@@ -7,16 +7,6 @@ import (
 	"time"
 )
 
-func WhoWin(p, d int) {
-	if p > d {
-		fmt.Println("Вы победили!")
-	} else if p == d {
-		fmt.Println("Ничья")
-	} else {
-		fmt.Println("Вы проиграли!")
-	}
-}
-
 func main() {
 	var input string
 	rand.Seed(time.Now().Unix())
