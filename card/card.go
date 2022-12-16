@@ -1,9 +1,4 @@
-package cards
-
-import (
-	"fmt"
-	"math/rand"
-)
+package card
 
 type Suit rune
 
@@ -63,31 +58,16 @@ type Card struct {
 	suit Suit
 }
 
-func (c *Card) String() string {
-	return string(rune(c.rank)) + string(rune(c.suit))
+func New(r Rank, s Suit) Card {
+	return Card{r, s}
+}
+func (c *Card) Suit() Suit {
+	return c.suit
+}
+func (c *Card) Rank() Rank {
+	return c.rank
 }
 
-var Deck = map[string]int{}
-var ShuffledDeck = []string{}
-
-func InitializeTheDeck() {
-	for i := 0; i < len(Ranks); i++ {
-		for j := 0; j < len(Suits); j++ {
-			ShuffledDeck = append(ShuffledDeck, string(Ranks[i])+string(Suits[j]))
-			Deck[string(Ranks[i])+string(Suits[j])] = RankValues[Ranks[i]]
-
-		}
-
-	}
-	rand.Shuffle(len(ShuffledDeck), func(i, j int) {
-		ShuffledDeck[i], ShuffledDeck[j] = ShuffledDeck[j], ShuffledDeck[i]
-	})
-}
-func TakeCard() int {
-	InitializeTheDeck()
-	card := Deck[ShuffledDeck[len(ShuffledDeck)-1]]
-	fmt.Println(ShuffledDeck[len(ShuffledDeck)-1])
-	ShuffledDeck = ShuffledDeck[:len(ShuffledDeck)-1]
-
-	return card
+func (c *Card) Par() int {
+	return RankValues[c.rank]
 }

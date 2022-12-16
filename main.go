@@ -2,10 +2,23 @@ package main
 
 import (
 	"fmt"
-	"game/Game2.0/logic"
+
 	"math/rand"
 	"time"
+
+	"Game2.0.0/blackjack"
+	"Game2.0.0/deck"
 )
+
+func WhoWin(p, d int) {
+	if p > d {
+		fmt.Println("Вы победили!")
+	} else if p == d {
+		fmt.Println("Ничья")
+	} else {
+		fmt.Println("Вы проиграли!")
+	}
+}
 
 func main() {
 	var input string
@@ -16,19 +29,15 @@ func main() {
 	fmt.Scanln(&input)
 	if input == "Yes" {
 		fmt.Println("Игра началась(отсылОЧКА к пиле) =)")
-		switch logic.Game() {
-		case "player win":
-			fmt.Println("Win")
-		case "player lose":
-			fmt.Println("Lose")
-		case "dealer lose":
-			fmt.Println("Win")
-		case "dealer win":
-			fmt.Println("Lose")
-		case "draw":
-			fmt.Println("Draw")
-
+		b := blackjack.New(deck.New().Shuffle()).Play()
+		if b == blackjack.Win {
+			fmt.Println("Вы победили")
+		} else if b == blackjack.Lose {
+			fmt.Println("Вы проиграли")
+		} else if b == blackjack.Draw {
+			fmt.Println("Ничья")
 		}
+
 	} else if input == "No" {
 		fmt.Println("Golang`ера ответ, пока =(")
 	} else {
