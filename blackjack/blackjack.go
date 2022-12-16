@@ -46,7 +46,7 @@ func (b *Blackjack) Play() int {
 		if input == "Hit" {
 			c := b.deck.TakeCard()
 			if c.Rank() == card.Ace {
-				fmt.Printf("Вам выпал туз, выберете 1 или 11, Ваш счет: %v\n", b.playerscore)
+				fmt.Printf("Вам выпал туз, выберите 1 или 11, Ваш счет: %v\n", b.playerscore)
 				fmt.Scanln(&input)
 				if input == "1" {
 					b.playerscore += 1
@@ -118,7 +118,6 @@ func (b *Blackjack) Play() int {
 			return b.gameScore()
 		} else {
 			fmt.Println("Вы ввели неправильную команду, введите заного")
-			continue
 		}
 	}
 }
