@@ -6,8 +6,8 @@ import (
 	"math/rand"
 	"time"
 
-	"Game2.0.0/blackjack"
-	"Game2.0.0/deck"
+	"joycasino/blackjack"
+	"joycasino/deck"
 )
 
 func WhoWin(p, d int) {

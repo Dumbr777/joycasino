@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"Game2.0.0/card"
+	"joycasino/card"
 )
 
 type Deck struct {

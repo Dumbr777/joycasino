@@ -1,3 +1,3 @@
-module Game2.0.0
+module joycasino
 
 go 1.19

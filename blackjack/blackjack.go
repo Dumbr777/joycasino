@@ -3,8 +3,8 @@ package blackjack
 import (
 	"fmt"
 
-	"Game2.0.0/card"
-	"Game2.0.0/deck"
+	"joycasino/card"
+	"joycasino/deck"
 )
 
 type Blackjack struct {
